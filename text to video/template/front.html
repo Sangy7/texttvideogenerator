@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form>
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number">
+
+            <button type="button" id="generateOTPButton">Generate OTP</button>
+
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" placeholder="Enter the OTP">
+
+            <button type="button" id="loginButton">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("generateOTPButton").addEventListener("click", function () {
+                generateOTP();
+            });
+
+            document.getElementById("loginButton").addEventListener("click", function () {
+                validateLogin();
+            });
+
+            function generateOTP() {
+                // Generate a random 6-digit OTP
+                const otp = Math.floor(100000 + Math.random() * 900000);
+
+                // Display the generated OTP in a prompt
+                const enteredOTP = prompt(`Generated OTP: ${otp}\nEnter the OTP to proceed:`);
+
+                // Set the entered OTP in the input field
+                document.getElementById('otp').value = enteredOTP || '';
+            }
+
+            function validateLogin() {
+                const enteredOTP = document.getElementById('otp').value;
+
+                // Simulate an API request for login validation
+                // Replace this part with your actual login validation logic
+                const isLoginSuccessful = true;  // Replace with your logic
+
+                if (isLoginSuccessful) {
+                    // Redirect to front.html in the "front" folder on successful login
+                    window.location.href = 'template/front.html';
+                } else {
+                    alert('Invalid OTP. Please try again.');
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
